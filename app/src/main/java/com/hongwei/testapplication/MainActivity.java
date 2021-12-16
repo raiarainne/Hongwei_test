@@ -2,14 +2,17 @@ package com.hongwei.testapplication;
 
 import static com.hongwei.testapplication.Utils.ApiUtil.getbalanceApi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 
 
+import android.content.DialogInterface;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -89,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
     private void getValance(){
         String servertoken = Preference.getInstance().getValue(MainActivity.this, PrefConst.ACCESS_TOKEN, "");
-        //Log.d("servertoken==", servertoken);
         getbalanceApi(this, servertoken, progressbar);
 
     }
@@ -117,5 +119,35 @@ public class MainActivity extends AppCompatActivity implements AppBarLayout.OnOf
             progressbar.setVisibility(View.INVISIBLE);
             Toast.makeText(MainActivity.this, getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        confirmclose();
+    }
+
+    public void confirmclose(){
+        AlertDialog alertDialog = null;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Caution!");
+        builder.setMessage("Are you sure you want to close application now?");
+        builder.setCancelable(false);
+        AlertDialog finalAlertDialog = alertDialog;
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(finalAlertDialog != null) finalAlertDialog.dismiss();
+                MainActivity.this.finish();
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(finalAlertDialog != null) finalAlertDialog.dismiss();
+            }
+        });
+        alertDialog = builder.create();
+        alertDialog.show();
+        alertDialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 }
