@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.material.appbar.AppBarLayout;
 import com.hongwei.testapplication.Utils.PrefConst;
 import com.hongwei.testapplication.Utils.Preference;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -109,15 +110,15 @@ public class MainActivity extends AppCompatActivity implements AppBarLayout.OnOf
                 
             }else if(response.has("message")){
                 String message = response.getString("message");
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                DynamicToast.makeError(MainActivity.this, message, 2500).show();
             }else{
-                Toast.makeText(MainActivity.this, getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                DynamicToast.makeError(MainActivity.this, getString(R.string.errormessage), 2500).show();
             }
 
         } catch(JSONException e){
             e.printStackTrace();
             progressbar.setVisibility(View.INVISIBLE);
-            Toast.makeText(MainActivity.this, getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+            DynamicToast.makeError(MainActivity.this, getString(R.string.errormessage), 2500).show();
         }
     }
 

@@ -18,6 +18,7 @@ import com.hongwei.testapplication.HongweitestApplication;
 import com.hongwei.testapplication.LoginActivity;
 import com.hongwei.testapplication.MainActivity;
 import com.hongwei.testapplication.R;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,18 +54,19 @@ public class ApiUtil {
 
                                 if(obj.has("message")){
                                     String message = obj.getString("message");
-                                    Toast.makeText(loginActivity, message, Toast.LENGTH_SHORT).show();
+                                    DynamicToast.makeError(loginActivity, message, 2500).show();
                                 }else{
                                     btn_login.revertAnimation();
-                                    Toast.makeText(loginActivity, loginActivity.getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                                    DynamicToast.makeError(loginActivity, loginActivity.getString(R.string.errormessage), 2500).show();
+
                                 }
 
                             } catch (UnsupportedEncodingException e1) {
-                                Toast.makeText(loginActivity, loginActivity.getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                                DynamicToast.makeError(loginActivity, loginActivity.getString(R.string.errormessage), 2500).show();
                                 e1.printStackTrace();
                             } catch (JSONException e2) {
 
-                                Toast.makeText(loginActivity, loginActivity.getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                                DynamicToast.makeError(loginActivity, loginActivity.getString(R.string.errormessage), 2500).show();
                                 e2.printStackTrace();
                             }
                         }
@@ -110,17 +112,17 @@ public class ApiUtil {
 
                                 if(obj.has("message")){
                                     String message = obj.getString("message");
-                                    Toast.makeText(mainActivity, message, Toast.LENGTH_SHORT).show();
+                                    DynamicToast.makeError(mainActivity, message, 2500).show();
                                 }else{
-                                    Toast.makeText(mainActivity, mainActivity.getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                                    DynamicToast.makeError(mainActivity, mainActivity.getString(R.string.errormessage), 2500).show();
                                 }
 
                             } catch (UnsupportedEncodingException e1) {
-                                Toast.makeText(mainActivity, mainActivity.getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                                DynamicToast.makeError(mainActivity, mainActivity.getString(R.string.errormessage), 2500).show();
                                 e1.printStackTrace();
                             } catch (JSONException e2) {
 
-                                Toast.makeText(mainActivity, mainActivity.getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                                DynamicToast.makeError(mainActivity, mainActivity.getString(R.string.errormessage), 2500).show();
                                 e2.printStackTrace();
                             }
 

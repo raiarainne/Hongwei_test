@@ -14,11 +14,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.hongwei.testapplication.Utils.PrefConst;
 import com.hongwei.testapplication.Utils.Preference;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -108,16 +108,16 @@ public class LoginActivity extends AppCompatActivity {
                 gotoMainactivity();
             }else if(response.has("message")){
                 String message = response.getString("message");
-                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                DynamicToast.makeError(LoginActivity.this, message, 2500).show();
             }else{
                 btn_login.revertAnimation();
-                Toast.makeText(LoginActivity.this, getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+                DynamicToast.makeError(LoginActivity.this, getString(R.string.errormessage), 2500).show();
             }
 
         } catch(JSONException e){
             e.printStackTrace();
             btn_login.revertAnimation();
-            Toast.makeText(LoginActivity.this, getString(R.string.errormessage), Toast.LENGTH_SHORT).show();
+            DynamicToast.makeError(LoginActivity.this, getString(R.string.errormessage), 2500).show();
         }
     }
 
