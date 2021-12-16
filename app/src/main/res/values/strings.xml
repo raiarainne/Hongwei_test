@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Hongwei_test</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOG IN</string>
+    <string name="mybalance">My Balance</string>
+    <string name="errormessage">Something went wrong</string>
+    <string name="saveemailpassword">Save email and password</string>
+    <string name="pleaseenteremail">Please enter Email address</string>
+    <string name="pleaseenterpassword">Please enter password</string>
+
+    <string name="lorem">
+		This application was built by <b>Hongwei Zhao</b>
+	</string>
+</resources>
